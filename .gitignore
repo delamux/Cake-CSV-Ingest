@@ -1,0 +1,23 @@
+# Dependencies
+/vendor/
+/node_modules/
+composer.lock
+package-lock.json
+
+# Tooling caches
+/.phpunit.cache/
+.phpunit.result.cache
+/tmp/
+/coverage/
+/.phpcs-cache
+
+# OS / editors
+.DS_Store
+.idea/
+.vscode/
+
+# AI working notes (roadmap, decisions, analysis, progress) - local only
+/.ai/
+
+# Claude Code personal settings (shared settings in .claude/settings.json ARE committed)
+/.claude/settings.local.json
