@@ -21,6 +21,11 @@ final class IngestReport
     private bool $truncated = false;
 
     /**
+     * @var array<string, list<string>>
+     */
+    private array $unresolved = [];
+
+    /**
      * @param bool $dryRun Whether changes were rolled back.
      */
     public function __construct(public readonly bool $dryRun = false)
@@ -57,6 +62,23 @@ final class IngestReport
     public function markTruncated(): void
     {
         $this->truncated = true;
+    }
+
+    /**
+     * @param array<string, list<string>> $unresolved Field => CSV texts without a key.
+     * @return void
+     */
+    public function noteUnresolved(array $unresolved): void
+    {
+        $this->unresolved = $unresolved;
+    }
+
+    /**
+     * @return array<string, list<string>>
+     */
+    public function unresolved(): array
+    {
+        return $this->unresolved;
     }
 
     /**
