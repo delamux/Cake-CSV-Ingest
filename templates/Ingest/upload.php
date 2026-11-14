@@ -34,6 +34,7 @@ $this->Html->script('CsvIngest.csv-ingest', ['block' => true, 'defer' => true]);
             'required' => true,
             'data-ci-file' => '',
             'data-ci-max-size' => (string)$maxFileSize,
+            'data-ci-msg-too-large' => __d('csv_ingest', 'The file is larger than the {0} limit.'),
             'aria-describedby' => 'ci-file-hint',
         ]) ?>
         <p class="ci-hint" id="ci-file-hint" data-ci-file-info="" aria-live="polite">

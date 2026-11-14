@@ -99,7 +99,8 @@ $availabilityUrl = $this->Url->build([
                 </tbody>
             </table>
         </div>
-        <p class="ci-hint ci-hint--warning" data-ci-duplicates="" hidden></p>
+        <p class="ci-hint ci-hint--warning" data-ci-duplicates="" hidden
+           data-ci-msg-duplicates="<?= h(__d('csv_ingest', 'The same CSV column feeds several fields: {0}')) ?>"></p>
     </fieldset>
 
     <fieldset class="ci-fieldset">
@@ -128,6 +129,8 @@ $availabilityUrl = $this->Url->build([
             'label' => __d('csv_ingest', 'Save this mapping as preset (optional)'),
             'data-ci-preset-name' => '',
             'data-ci-availability-url' => $availabilityUrl,
+            'data-ci-msg-new' => __d('csv_ingest', 'A new preset will be created.'),
+            'data-ci-msg-update' => __d('csv_ingest', 'You already have a preset with this name; it will be updated.'),
             'aria-describedby' => 'ci-preset-hint',
         ]) ?>
         <p class="ci-hint" id="ci-preset-hint" data-ci-preset-hint="" aria-live="polite"></p>
