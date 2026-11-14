@@ -1,0 +1,379 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CsvIngest (template)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "(untitled)"
+msgstr ""
+
+msgid "A new preset will be created."
+msgstr ""
+
+msgid "A preset with this name already exists."
+msgstr ""
+
+msgid "Accepted: .csv or .txt, up to {0} MB. Any common encoding; it is converted to UTF-8."
+msgstr ""
+
+msgid "Actions"
+msgstr ""
+
+msgid "All fields"
+msgstr ""
+
+msgid "All tables"
+msgstr ""
+
+msgid "Any status"
+msgstr ""
+
+msgid "Assigned"
+msgstr ""
+
+msgid "CSV column"
+msgstr ""
+
+msgid "CSV file"
+msgstr ""
+
+msgid "Cancel"
+msgstr ""
+
+msgid "Choose a CSV file to upload."
+msgstr ""
+
+msgid "Choose the existing record each CSV value refers to. Your choice is remembered for future imports."
+msgstr ""
+
+msgid "Choose which CSV column feeds each field. Fields marked * are required."
+msgstr ""
+
+msgid "Column"
+msgstr ""
+
+msgid "Column {0}"
+msgstr ""
+
+msgid "Columns"
+msgstr ""
+
+msgid "Comma (,)"
+msgstr ""
+
+msgid "Continue"
+msgstr ""
+
+msgid "Created"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete the mapping for \"{0}\"?"
+msgstr ""
+
+msgid "Delete the preset \"{0}\"?"
+msgstr ""
+
+msgid "Double quote (\")"
+msgstr ""
+
+msgid "Dry run"
+msgstr ""
+
+msgid "Dry run, nothing was saved."
+msgstr ""
+
+msgid "Dry run: validate everything but save nothing"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Every row creates a new record."
+msgstr ""
+
+msgid "Failed"
+msgstr ""
+
+msgid "Field"
+msgstr ""
+
+msgid "Field separator"
+msgstr ""
+
+msgid "File format"
+msgstr ""
+
+msgid "File preview (first {0} rows)"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "How CSV texts translate into related records for each importable table."
+msgstr ""
+
+msgid "Import"
+msgstr ""
+
+msgid "Import presets"
+msgstr ""
+
+msgid "Import {0}"
+msgstr ""
+
+msgid "Imports into"
+msgstr ""
+
+msgid "Invalid upload reference."
+msgstr ""
+
+msgid "Line"
+msgstr ""
+
+msgid "Map a CSV value"
+msgstr ""
+
+msgid "Map columns and import"
+msgstr ""
+
+msgid "Map these required fields before importing: {0}"
+msgstr ""
+
+msgid "Mapped to"
+msgstr ""
+
+msgid "Means"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "No {0} matches \"{1}\". Assign it in the pending values list."
+msgstr ""
+
+msgid "Only .csv and .txt files are accepted."
+msgstr ""
+
+msgid "Options"
+msgstr ""
+
+msgid "Page {{page}} of {{pages}}, {{count}} records"
+msgstr ""
+
+msgid "Pagination"
+msgstr ""
+
+msgid "Patch: overwrite only non-blank values"
+msgstr ""
+
+msgid "Patched"
+msgstr ""
+
+msgid "Pending"
+msgstr ""
+
+msgid "Pending values ({0})"
+msgstr ""
+
+msgid "Personal"
+msgstr ""
+
+msgid "Pipe (|)"
+msgstr ""
+
+msgid "Problem"
+msgstr ""
+
+msgid "Replace: overwrite all mapped fields"
+msgstr ""
+
+msgid "Replaced"
+msgstr ""
+
+msgid "Required"
+msgstr ""
+
+msgid "Reset"
+msgstr ""
+
+msgid "Result"
+msgstr ""
+
+msgid "Sample"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Save this mapping as preset (optional)"
+msgstr ""
+
+msgid "Saved preset"
+msgstr ""
+
+msgid "Semicolon (;)"
+msgstr ""
+
+msgid "Shared"
+msgstr ""
+
+msgid "Show all"
+msgstr ""
+
+msgid "Showing presets for {0}."
+msgstr ""
+
+msgid "Single quote (')"
+msgstr ""
+
+msgid "Skip: keep the existing record"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
+msgid "Some pending values could not be saved."
+msgstr ""
+
+msgid "Some values could not be linked to existing records. Assign them below and import again."
+msgstr ""
+
+msgid "Status"
+msgstr ""
+
+msgid "Tab"
+msgstr ""
+
+msgid "Table"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Text quoted with"
+msgstr ""
+
+msgid "The database rejected this row."
+msgstr ""
+
+msgid "The file could not be parsed: {0}"
+msgstr ""
+
+msgid "The file could not be uploaded. Please check the errors below."
+msgstr ""
+
+msgid "The file encoding is not supported."
+msgstr ""
+
+msgid "The file is empty."
+msgstr ""
+
+msgid "The file is larger than the {0} MB limit."
+msgstr ""
+
+msgid "The file is larger than the {0} limit."
+msgstr ""
+
+msgid "The first row contains column titles"
+msgstr ""
+
+msgid "The preset could not be deleted."
+msgstr ""
+
+msgid "The preset could not be saved."
+msgstr ""
+
+msgid "The preset has been deleted."
+msgstr ""
+
+msgid "The row limit was reached; the remaining rows were not processed."
+msgstr ""
+
+msgid "The same CSV column feeds several fields: {0}"
+msgstr ""
+
+msgid "The uploaded file is no longer available."
+msgstr ""
+
+msgid "The value map could not be deleted."
+msgstr ""
+
+msgid "The value map could not be saved."
+msgstr ""
+
+msgid "The value map has been deleted."
+msgstr ""
+
+msgid "The value map has been saved."
+msgstr ""
+
+msgid "This value is already mapped for this field."
+msgstr ""
+
+msgid "This value map does not belong to an importable relation."
+msgstr ""
+
+msgid "Unknown delimiter."
+msgstr ""
+
+msgid "Unknown enclosure."
+msgstr ""
+
+msgid "Updated"
+msgstr ""
+
+msgid "Upload a CSV file first."
+msgstr ""
+
+msgid "Upload another file"
+msgstr ""
+
+msgid "Upload file"
+msgstr ""
+
+msgid "Value in CSV"
+msgstr ""
+
+msgid "Value maps"
+msgstr ""
+
+msgid "Visibility"
+msgstr ""
+
+msgid "When a row matches an existing record"
+msgstr ""
+
+msgid "You already have a preset with this name; it will be updated."
+msgstr ""
+
+msgid "match key"
+msgstr ""
+
+msgid "next"
+msgstr ""
+
+msgid "previous"
+msgstr ""
+
+msgid "{0} rows failed"
+msgstr ""
+
+msgid "{0} rows processed: {1} created, {2} replaced, {3} patched, {4} skipped, {5} failed."
+msgstr ""
+
+msgid "— Decide later —"
+msgstr ""
+
+msgid "— Do not import —"
+msgstr ""
+
+msgid "— No preset —"
+msgstr ""
+
+msgid "— Pending —"
+msgstr ""
