@@ -264,6 +264,23 @@ class IngestRunnerTest extends TestCase
         $this->assertSame(1, $report->count(RowOutcome::Skipped));
     }
 
+    public function testDatabaseRejectionsFailTheRowInsteadOfAbortingTheRun(): void
+    {
+        $this->contacts->getBehavior('Ingestable')->setConfig('validation', false);
+        $this->contacts->getEventManager()->on(IngestEvents::BEFORE_ROW_MARSHAL, function (EventInterface $event, ArrayObject $data): void {
+            if ($data['email'] === 'nameless@example.test') {
+                $data['name'] = null;
+            }
+        });
+        $csv = self::HEADER . "X;nameless@example.test;;;;;;\nBea;bea@example.test;;;;;;\n";
+
+        $report = $this->runner()->run($this->source($csv), $this->fullMap());
+
+        $this->assertSame(1, $report->count(RowOutcome::Failed), 'NOT NULL violation on contacts.name');
+        $this->assertArrayHasKey('_database', $report->failures()[0]->messages);
+        $this->assertSame(1, $report->count(RowOutcome::Created));
+    }
+
     public function testTargetWithoutIngestableBehaviorIsRejected(): void
     {
         $this->expectException(MisconfiguredTargetException::class);
