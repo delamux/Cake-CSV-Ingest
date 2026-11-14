@@ -7,7 +7,6 @@ use Cake\Utility\Text;
 use CsvIngest\Exception\UnreadableSourceException;
 use Psr\Http\Message\UploadedFileInterface;
 use RuntimeException;
-
 use function Cake\I18n\__d;
 
 /**

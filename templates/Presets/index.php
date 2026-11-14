@@ -37,9 +37,16 @@ $this->Html->css('CsvIngest.csv-ingest', ['block' => true]);
             <?php foreach ($presets as $preset) : ?>
                 <tr>
                     <td><?= h($preset->name) ?></td>
-                    <td><?= $this->Html->link($preset->target, ['action' => 'index', '?' => ['target' => $preset->target]]) ?></td>
                     <td>
-                        <?= h($preset->owner_id === null ? __d('csv_ingest', 'Shared') : __d('csv_ingest', 'Personal')) ?>
+                        <?= $this->Html->link(
+                            $preset->target,
+                            ['action' => 'index', '?' => ['target' => $preset->target]],
+                        ) ?>
+                    </td>
+                    <td>
+                        <?= h($preset->owner_id === null
+                            ? __d('csv_ingest', 'Shared')
+                            : __d('csv_ingest', 'Personal')) ?>
                     </td>
                     <td><?= h((string)$preset->modified) ?></td>
                     <td class="ci-table__actions">

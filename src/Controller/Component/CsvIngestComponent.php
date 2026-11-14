@@ -30,7 +30,6 @@ use CsvIngest\Model\Table\IngestPresetsTable;
 use CsvIngest\Model\Table\IngestValueMapsTable;
 use CsvIngest\OwnerIdentity;
 use Psr\Http\Message\UploadedFileInterface;
-
 use function Cake\I18n\__d;
 
 /**
@@ -295,8 +294,13 @@ class CsvIngestComponent extends Component
      * @param \CsvIngest\Import\CsvSource $source Source.
      * @return void
      */
-    private function rememberPreset(Table $target, string $name, ColumnMap $map, OnMatch $onMatch, CsvSource $source): void
-    {
+    private function rememberPreset(
+        Table $target,
+        string $name,
+        ColumnMap $map,
+        OnMatch $onMatch,
+        CsvSource $source,
+    ): void {
         $preset = $this->presets()->remember($target->getAlias(), $name, [
             'columns' => $map->toHeaderTitles($source->headers()),
             'on_match' => $onMatch->value,

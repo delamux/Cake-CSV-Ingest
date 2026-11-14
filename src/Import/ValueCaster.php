@@ -41,7 +41,8 @@ final class ValueCaster
             'decimal', 'float' => $this->toNumber($value),
             'integer', 'biginteger', 'smallinteger', 'tinyinteger' => $this->toInteger($value),
             'date' => $this->toDate($value, 'Y-m-d'),
-            'datetime', 'datetimefractional', 'timestamp', 'timestampfractional' => $this->toDate($value, 'Y-m-d H:i:s'),
+            'datetime', 'datetimefractional', 'timestamp', 'timestampfractional'
+                => $this->toDate($value, 'Y-m-d H:i:s'),
             default => $value,
         };
     }

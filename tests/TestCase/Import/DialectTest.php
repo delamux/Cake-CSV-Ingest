@@ -21,7 +21,7 @@ class DialectTest extends TestCase
             'comma' => ["name,email,age\n", Delimiter::Comma],
             'tab' => ["name\temail\tage", Delimiter::Tab],
             'pipe' => ['name|email|age', Delimiter::Pipe],
-            'commas inside quotes ignored' => ["\"Doe, John\";\"Main St, 1\";x", Delimiter::Semicolon],
+            'commas inside quotes ignored' => ['"Doe, John";"Main St, 1";x', Delimiter::Semicolon],
             'CRLF line endings' => ["a,b,c\r\n1,2,3", Delimiter::Comma],
             'empty falls back to semicolon' => ['', Delimiter::Semicolon],
             'single column falls back to semicolon' => ['name', Delimiter::Semicolon],

@@ -37,7 +37,10 @@ use function Cake\I18n\__d;
 
     <?php if ($report->unresolved() !== []) : ?>
         <p class="ci-hint ci-hint--warning">
-            <?= h(__d('csv_ingest', 'Some values could not be linked to existing records. Assign them below and import again.')) ?>
+            <?= h(__d(
+                'csv_ingest',
+                'Some values could not be linked to existing records. Assign them below and import again.',
+            )) ?>
         </p>
     <?php endif; ?>
 

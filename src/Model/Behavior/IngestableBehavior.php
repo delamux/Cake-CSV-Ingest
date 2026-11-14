@@ -11,7 +11,6 @@ use Closure;
 use CsvIngest\Exception\MisconfiguredTargetException;
 use CsvIngest\Import\FieldSpec;
 use CsvIngest\IngestSettings;
-
 use function Cake\I18n\__d;
 
 /**

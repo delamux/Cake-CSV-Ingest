@@ -14,6 +14,7 @@ use Cake\Datasource\ConnectionManager;
 use Cake\TestSuite\Fixture\SchemaLoader;
 use Cake\Utility\Security;
 use CsvIngest\CsvIngestPlugin;
+use TestApp\Controller\AppController;
 
 $root = dirname(__DIR__);
 require_once $root . '/vendor/autoload.php';
@@ -80,7 +81,7 @@ ConnectionManager::setConfig('test', ['url' => getenv('DB_URL')]);
 ConnectionManager::alias('test', 'default');
 
 // Plugin controllers extend the host's App\Controller\AppController; the test host lives in TestApp.
-class_alias(TestApp\Controller\AppController::class, 'App\Controller\AppController');
+class_alias(AppController::class, 'App\Controller\AppController');
 
 Configure::write('CsvIngest.storagePath', TMP . 'uploads');
 $plugin = new CsvIngestPlugin();

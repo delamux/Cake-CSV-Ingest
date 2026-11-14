@@ -8,7 +8,6 @@ use Cake\Http\Response;
 use CsvIngest\Import\ForeignKeyResolver;
 use CsvIngest\Model\Behavior\IngestableBehavior;
 use CsvIngest\Model\Table\IngestValueMapsTable;
-
 use function Cake\I18n\__d;
 
 /**
@@ -71,7 +70,9 @@ class ValueMapsController extends AppController
         $behavior = $target->hasBehavior('Ingestable') ? $target->getBehavior('Ingestable') : null;
         $field = $behavior instanceof IngestableBehavior ? $behavior->ingestField($valueMap->field) : null;
         if ($field === null || !$field->isForeignKey()) {
-            throw new BadRequestException(__d('csv_ingest', 'This value map does not belong to an importable relation.'));
+            throw new BadRequestException(
+                __d('csv_ingest', 'This value map does not belong to an importable relation.'),
+            );
         }
 
         if ($this->request->is(['post', 'put', 'patch'])) {
