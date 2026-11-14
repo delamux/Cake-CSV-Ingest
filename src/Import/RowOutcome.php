@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace CsvIngest\Import;
 
+use function Cake\I18n\__d;
+
 /**
  * Result of processing a single CSV row.
  */

@@ -10,6 +10,8 @@ use Cake\Validation\Validator;
 use CsvIngest\IngestSettings;
 use CsvIngest\Model\Entity\IngestPreset;
 
+use function Cake\I18n\__d;
+
 /**
  * Saved column mappings ("presets") per target table, optionally owned by a user.
  *

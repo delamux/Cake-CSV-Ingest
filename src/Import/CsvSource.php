@@ -8,6 +8,8 @@ use Generator;
 use League\Csv\Exception as CsvException;
 use League\Csv\Reader;
 
+use function Cake\I18n\__d;
+
 /**
  * Read-only view over a stored CSV file.
  *

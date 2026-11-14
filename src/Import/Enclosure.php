@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace CsvIngest\Import;
 
+use function Cake\I18n\__d;
+
 /**
  * Character used to wrap CSV fields that contain separators or line breaks.
  */

@@ -12,6 +12,8 @@ use CsvIngest\Exception\MisconfiguredTargetException;
 use CsvIngest\Import\FieldSpec;
 use CsvIngest\IngestSettings;
 
+use function Cake\I18n\__d;
+
 /**
  * Marks a table as a CSV ingestion target and describes how rows map onto it.
  *
