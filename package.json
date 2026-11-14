@@ -1,0 +1,19 @@
+{
+  "name": "cakephp-csv-ingest-assets",
+  "private": true,
+  "description": "Browser enhancements for the CsvIngest CakePHP plugin (no runtime dependencies).",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild resources/ts/index.ts --bundle --format=iife --target=es2020 --minify --sourcemap --outfile=webroot/js/csv-ingest.js",
+    "watch": "npm run build -- --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "happy-dom": "^21.0.4",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}
