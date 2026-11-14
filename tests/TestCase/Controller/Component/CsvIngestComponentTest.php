@@ -109,6 +109,8 @@ class CsvIngestComponentTest extends TestCase
         $this->assertResponseNotContains('Someone else');
         $this->assertResponseNotContains('Other target');
         $this->assertResponseContains('data-ci-upload');
+        $this->assertSame(1, substr_count((string)$this->_response->getBody(), 'aria-current="step"'));
+        $this->assertResponseContains('ci-steps__item--current" aria-current="step">');
     }
 
     public function testInvalidUploadRedisplaysTheFormWithErrors(): void

@@ -9,7 +9,6 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 use CsvIngest\IngestSettings;
 use CsvIngest\Model\Entity\IngestPreset;
-
 use function Cake\I18n\__d;
 
 /**
@@ -98,8 +97,11 @@ class IngestPresetsTable extends Table
      * @param string|int|null $ownerId Current user id.
      * @return \Cake\ORM\Query\SelectQuery<\CsvIngest\Model\Entity\IngestPreset>
      */
-    public function findVisible(SelectQuery $query, ?string $target = null, string|int|null $ownerId = null): SelectQuery
-    {
+    public function findVisible(
+        SelectQuery $query,
+        ?string $target = null,
+        string|int|null $ownerId = null,
+    ): SelectQuery {
         $owner = [$this->aliasField('owner_id') . ' IS' => null];
         if ($ownerId !== null) {
             $owner = ['OR' => [$owner, $this->aliasField('owner_id') => (string)$ownerId]];

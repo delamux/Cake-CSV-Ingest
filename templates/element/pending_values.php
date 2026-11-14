@@ -21,7 +21,10 @@ foreach ($fields as $field) {
         <?= h(__d('csv_ingest', 'Pending values ({0})', count($pending))) ?>
     </legend>
     <p class="ci-hint">
-        <?= h(__d('csv_ingest', 'Choose the existing record each CSV value refers to. Your choice is remembered for future imports.')) ?>
+        <?= h(__d(
+            'csv_ingest',
+            'Choose the existing record each CSV value refers to. Your choice is remembered for future imports.',
+        )) ?>
     </p>
     <div class="ci-table-wrap">
         <table class="ci-table">

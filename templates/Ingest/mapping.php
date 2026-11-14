@@ -57,7 +57,9 @@ $availabilityUrl = $this->Url->build([
 
     <fieldset class="ci-fieldset">
         <legend class="ci-fieldset__legend"><?= h(__d('csv_ingest', 'Columns')) ?></legend>
-        <p class="ci-hint"><?= h(__d('csv_ingest', 'Choose which CSV column feeds each field. Fields marked * are required.')) ?></p>
+        <p class="ci-hint">
+            <?= h(__d('csv_ingest', 'Choose which CSV column feeds each field. Fields marked * are required.')) ?>
+        </p>
         <div class="ci-table-wrap">
             <table class="ci-table ci-map" data-ci-samples="<?= h((string)json_encode($preview[0] ?? [])) ?>">
                 <thead>
@@ -71,6 +73,7 @@ $availabilityUrl = $this->Url->build([
                 <?php foreach ($fields as $field) :
                     $selected = $columns[$field->name] ?? null;
                     $selectId = 'ci-column-' . $field->name;
+                    $sample = $selected !== null ? ($preview[0][$selected] ?? '') : '';
                     ?>
                     <tr class="ci-map__row<?= $selected === null ? ' ci-map__row--off' : '' ?>"
                         data-ci-field="<?= h($field->name) ?>"
@@ -93,7 +96,7 @@ $availabilityUrl = $this->Url->build([
                                 'data-ci-column' => '',
                             ]) ?>
                         </td>
-                        <td class="ci-map__sample" data-ci-sample=""><?= $selected !== null ? h($preview[0][$selected] ?? '') : '' ?></td>
+                        <td class="ci-map__sample" data-ci-sample=""><?= h($sample) ?></td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -138,7 +141,11 @@ $availabilityUrl = $this->Url->build([
 
     <div class="ci-actions">
         <?= $this->Form->button(__d('csv_ingest', 'Import'), ['class' => 'ci-button ci-button--primary']) ?>
-        <?= $this->Html->link(__d('csv_ingest', 'Upload another file'), ['action' => 'csvUpload'], ['class' => 'ci-button']) ?>
+        <?= $this->Html->link(
+            __d('csv_ingest', 'Upload another file'),
+            ['action' => 'csvUpload'],
+            ['class' => 'ci-button'],
+        ) ?>
     </div>
     <?= $this->Form->end() ?>
 
@@ -147,10 +154,20 @@ $availabilityUrl = $this->Url->build([
             <summary><?= h(__d('csv_ingest', 'File preview (first {0} rows)', count($preview))) ?></summary>
             <div class="ci-table-wrap">
                 <table class="ci-table">
-                    <thead><tr><?php foreach ($headers as $title) : ?><th scope="col"><?= h($title) ?></th><?php endforeach; ?></tr></thead>
+                    <thead>
+                        <tr>
+                            <?php foreach ($headers as $title) : ?>
+                                <th scope="col"><?= h($title) ?></th>
+                            <?php endforeach; ?>
+                        </tr>
+                    </thead>
                     <tbody>
                     <?php foreach ($preview as $row) : ?>
-                        <tr><?php foreach ($row as $value) : ?><td><?= h($value) ?></td><?php endforeach; ?></tr>
+                        <tr>
+                            <?php foreach ($row as $value) : ?>
+                                <td><?= h($value) ?></td>
+                            <?php endforeach; ?>
+                        </tr>
                     <?php endforeach; ?>
                     </tbody>
                 </table>

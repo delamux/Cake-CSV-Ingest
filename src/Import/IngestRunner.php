@@ -15,7 +15,6 @@ use CsvIngest\IngestSettings;
 use CsvIngest\Model\Behavior\IngestableBehavior;
 use CsvIngest\Model\Table\IngestValueMapsTable;
 use PDOException;
-
 use function Cake\I18n\__d;
 
 /**
@@ -262,7 +261,11 @@ final class IngestRunner
         try {
             return $this->target->save($entity, ['atomic' => true]) !== false;
         } catch (PDOException | RolledbackTransactionException $e) {
-            Log::warning(sprintf('CsvIngest: row could not be saved in %s: %s', $this->target->getAlias(), $e->getMessage()));
+            Log::warning(sprintf(
+                'CsvIngest: row could not be saved in %s: %s',
+                $this->target->getAlias(),
+                $e->getMessage(),
+            ));
             $entity->setError('_database', [__d('csv_ingest', 'The database rejected this row.')]);
 
             return false;

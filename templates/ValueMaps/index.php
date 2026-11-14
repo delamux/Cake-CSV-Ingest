@@ -24,7 +24,9 @@ ksort($fieldOptions);
 <section class="ci-admin">
     <header class="ci-admin__header">
         <h1><?= h(__d('csv_ingest', 'Value maps')) ?></h1>
-        <p class="ci-hint"><?= h(__d('csv_ingest', 'How CSV texts translate into related records for each importable table.')) ?></p>
+        <p class="ci-hint">
+            <?= h(__d('csv_ingest', 'How CSV texts translate into related records for each importable table.')) ?>
+        </p>
     </header>
 
     <?= $this->Form->create(null, [
@@ -65,7 +67,9 @@ ksort($fieldOptions);
                 <tr>
                     <th scope="col"><?= $this->Paginator->sort('target', __d('csv_ingest', 'Table')) ?></th>
                     <th scope="col"><?= $this->Paginator->sort('field', __d('csv_ingest', 'Field')) ?></th>
-                    <th scope="col"><?= $this->Paginator->sort('source_value', __d('csv_ingest', 'Value in CSV')) ?></th>
+                    <th scope="col">
+                        <?= $this->Paginator->sort('source_value', __d('csv_ingest', 'Value in CSV')) ?>
+                    </th>
                     <th scope="col"><?= $this->Paginator->sort('mapped_value', __d('csv_ingest', 'Mapped to')) ?></th>
                     <th scope="col"><span class="ci-visually-hidden"><?= h(__d('csv_ingest', 'Actions')) ?></span></th>
                 </tr>
@@ -84,12 +88,20 @@ ksort($fieldOptions);
                         <?php endif; ?>
                     </td>
                     <td class="ci-table__actions">
-                        <?= $this->Html->link(__d('csv_ingest', 'Edit'), ['action' => 'edit', $valueMap->id], ['class' => 'ci-button']) ?>
+                        <?= $this->Html->link(
+                            __d('csv_ingest', 'Edit'),
+                            ['action' => 'edit', $valueMap->id],
+                            ['class' => 'ci-button'],
+                        ) ?>
                         <?= $this->Form->postLink(
                             __d('csv_ingest', 'Delete'),
                             ['action' => 'delete', $valueMap->id],
                             [
-                                'confirm' => __d('csv_ingest', 'Delete the mapping for "{0}"?', $valueMap->source_value),
+                                'confirm' => __d(
+                                    'csv_ingest',
+                                    'Delete the mapping for "{0}"?',
+                                    $valueMap->source_value,
+                                ),
                                 'class' => 'ci-button ci-button--danger',
                             ],
                         ) ?>
