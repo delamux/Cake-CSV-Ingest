@@ -9,7 +9,7 @@ return [
     [
         'table' => 'csv_ingest_presets',
         'columns' => [
-            'id' => ['type' => 'integer', 'autoIncrement' => true],
+            'id' => ['type' => 'integer', 'autoIncrement' => true, 'null' => false],
             'owner_id' => ['type' => 'string', 'length' => 36, 'null' => true],
             'name' => ['type' => 'string', 'length' => 100, 'null' => false],
             'target' => ['type' => 'string', 'length' => 100, 'null' => false],
@@ -24,7 +24,7 @@ return [
     [
         'table' => 'csv_ingest_value_maps',
         'columns' => [
-            'id' => ['type' => 'integer', 'autoIncrement' => true],
+            'id' => ['type' => 'integer', 'autoIncrement' => true, 'null' => false],
             'target' => ['type' => 'string', 'length' => 100, 'null' => false],
             'field' => ['type' => 'string', 'length' => 100, 'null' => false],
             'source_value' => ['type' => 'string', 'length' => 255, 'null' => false],
@@ -40,7 +40,7 @@ return [
     [
         'table' => 'companies',
         'columns' => [
-            'id' => ['type' => 'integer', 'autoIncrement' => true],
+            'id' => ['type' => 'integer', 'autoIncrement' => true, 'null' => false],
             'name' => ['type' => 'string', 'length' => 100, 'null' => false],
             'tax_code' => ['type' => 'string', 'length' => 20, 'null' => true],
         ],
@@ -51,7 +51,7 @@ return [
     [
         'table' => 'contacts',
         'columns' => [
-            'id' => ['type' => 'integer', 'autoIncrement' => true],
+            'id' => ['type' => 'integer', 'autoIncrement' => true, 'null' => false],
             'company_id' => ['type' => 'integer', 'null' => true],
             'name' => ['type' => 'string', 'length' => 100, 'null' => false],
             'email' => ['type' => 'string', 'length' => 150, 'null' => true],
