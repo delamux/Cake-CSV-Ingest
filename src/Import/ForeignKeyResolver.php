@@ -147,9 +147,13 @@ final class ForeignKeyResolver
         if ($configured !== null) {
             return $configured;
         }
-        $display = $association->getTarget()->getDisplayField();
+        $table = $association->getTarget();
+        $display = $table->getDisplayField();
+        if (is_array($display)) {
+            $display = reset($display);
+        }
 
-        return is_array($display) ? (string)reset($display) : $display;
+        return is_string($display) && $display !== '' ? $display : $this->primaryKey($table);
     }
 
     /**

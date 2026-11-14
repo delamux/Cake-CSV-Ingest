@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace CsvIngest\Import;
 
 use ArrayObject;
-use Cake\Database\Exception\QueryException;
 use Cake\Datasource\EntityInterface;
 use Cake\Log\Log;
+use Cake\ORM\Exception\RolledbackTransactionException;
 use Cake\ORM\Table;
 use Cake\Utility\Hash;
 use CsvIngest\Exception\IncompleteMappingException;
@@ -261,7 +261,7 @@ final class IngestRunner
         }
         try {
             return $this->target->save($entity, ['atomic' => true]) !== false;
-        } catch (QueryException | PDOException $e) {
+        } catch (PDOException | RolledbackTransactionException $e) {
             Log::warning(sprintf('CsvIngest: row could not be saved in %s: %s', $this->target->getAlias(), $e->getMessage()));
             $entity->setError('_database', [__d('csv_ingest', 'The database rejected this row.')]);
 
