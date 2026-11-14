@@ -71,7 +71,7 @@ class IngestPresetsTable extends Table
             ->scalar('owner_id')
             ->maxLength('owner_id', 36)
             ->allowEmptyString('owner_id')
-            ->isArray('settings')
+            ->array('settings')
             ->requirePresence('settings', 'create');
     }
 
