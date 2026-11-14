@@ -135,7 +135,12 @@ final class UploadStore
         ));
         $detected = $candidates === [] ? false : mb_detect_encoding($contents, $candidates, true);
 
-        return mb_convert_encoding($contents, 'UTF-8', $detected ?: 'Windows-1252');
+        $converted = mb_convert_encoding($contents, 'UTF-8', $detected ?: 'Windows-1252');
+        if ($converted === false) {
+            throw new UnreadableSourceException(__d('csv_ingest', 'The file encoding is not supported.'));
+        }
+
+        return $converted;
     }
 
     /**
