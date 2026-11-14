@@ -12,6 +12,7 @@ use Cake\Core\Configure;
 use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\TestSuite\Fixture\SchemaLoader;
+use Cake\Utility\Security;
 use CsvIngest\CsvIngestPlugin;
 
 $root = dirname(__DIR__);
@@ -65,6 +66,7 @@ Configure::write('App', [
     ],
 ]);
 Configure::write('Session', ['defaults' => 'php']);
+Security::setSalt('csv-ingest-test-salt-not-secret-0123456789abcdef');
 
 Cache::setConfig([
     '_cake_translations_' => ['engine' => 'Array'],
