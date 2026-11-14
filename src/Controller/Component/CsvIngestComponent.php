@@ -7,7 +7,6 @@ use Cake\Controller\Component;
 use Cake\Http\Response;
 use Cake\ORM\Locator\LocatorAwareTrait;
 use Cake\ORM\Table;
-use Closure;
 use CsvIngest\Exception\IncompleteMappingException;
 use CsvIngest\Exception\MisconfiguredTargetException;
 use CsvIngest\Exception\UnreadableSourceException;
@@ -29,6 +28,7 @@ use CsvIngest\Model\Behavior\IngestableBehavior;
 use CsvIngest\Model\Entity\IngestPreset;
 use CsvIngest\Model\Table\IngestPresetsTable;
 use CsvIngest\Model\Table\IngestValueMapsTable;
+use CsvIngest\OwnerIdentity;
 use Psr\Http\Message\UploadedFileInterface;
 
 use function Cake\I18n\__d;
@@ -207,16 +207,7 @@ class CsvIngestComponent extends Component
      */
     public function ownerId(): string|int|null
     {
-        $request = $this->getController()->getRequest();
-        $resolver = IngestSettings::get('ownerResolver');
-        if ($resolver instanceof Closure) {
-            $id = $resolver($request);
-        } else {
-            $identity = $request->getAttribute('identity');
-            $id = is_object($identity) && method_exists($identity, 'getIdentifier') ? $identity->getIdentifier() : null;
-        }
-
-        return is_int($id) || (is_string($id) && $id !== '') ? $id : null;
+        return OwnerIdentity::fromRequest($this->getController()->getRequest());
     }
 
     /**
