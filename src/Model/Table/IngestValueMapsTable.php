@@ -9,6 +9,8 @@ use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
+use function Cake\I18n\__d;
+
 /**
  * Translations of free CSV text into foreign-key values, per target table and field.
  *
