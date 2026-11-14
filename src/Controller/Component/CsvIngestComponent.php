@@ -47,7 +47,7 @@ class CsvIngestComponent extends Component
     use LocatorAwareTrait;
 
     /**
-     * @var array<string, mixed>
+     * @var array<int|string, array<string, mixed>|string>
      */
     protected array $components = ['Flash'];
 
@@ -142,7 +142,7 @@ class CsvIngestComponent extends Component
             : ColumnMap::guess($fields, $source->headers());
         $onMatch = $preset?->onMatch() ?? OnMatch::Skip;
         $dryRun = false;
-        $presetName = $preset?->name ?? '';
+        $presetName = $preset !== null ? $preset->name : '';
         $report = null;
 
         if ($request->is(['post', 'put'])) {

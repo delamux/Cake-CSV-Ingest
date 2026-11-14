@@ -167,9 +167,9 @@ class IngestableBehavior extends Behavior
     /**
      * Find a record matching the CSV row on the configured key.
      *
-     * @param \Cake\ORM\Query\SelectQuery $query Query.
+     * @param \Cake\ORM\Query\SelectQuery<\Cake\Datasource\EntityInterface|array<string, mixed>> $query Query.
      * @param array<string, mixed> $values Marshalled row values.
-     * @return \Cake\ORM\Query\SelectQuery
+     * @return \Cake\ORM\Query\SelectQuery<\Cake\Datasource\EntityInterface|array<string, mixed>>
      */
     public function findIngestMatch(SelectQuery $query, array $values = []): SelectQuery
     {

@@ -22,9 +22,10 @@ use function Cake\I18n\__d;
  * ```
  *
  * @method \CsvIngest\Model\Entity\IngestPreset newEmptyEntity()
- * @method \CsvIngest\Model\Entity\IngestPreset newEntity(array $data, array $options = [])
- * @method \CsvIngest\Model\Entity\IngestPreset patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \CsvIngest\Model\Entity\IngestPreset|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method \CsvIngest\Model\Entity\IngestPreset newEntity(array<string, mixed> $data, array<string, mixed> $options = [])
+ * @method \CsvIngest\Model\Entity\IngestPreset get(mixed $primaryKey, array<string, mixed>|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \CsvIngest\Model\Entity\IngestPreset patchEntity(\Cake\Datasource\EntityInterface $entity, array<string, mixed> $data, array<string, mixed> $options = [])
+ * @method \CsvIngest\Model\Entity\IngestPreset|false save(\Cake\Datasource\EntityInterface $entity, array<string, mixed> $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class IngestPresetsTable extends Table
@@ -92,10 +93,10 @@ class IngestPresetsTable extends Table
     /**
      * Presets a user may use for a target: shared ones plus their own.
      *
-     * @param \Cake\ORM\Query\SelectQuery $query Query.
+     * @param \Cake\ORM\Query\SelectQuery<\CsvIngest\Model\Entity\IngestPreset> $query Query.
      * @param string|null $target Target alias (null = all targets).
      * @param string|int|null $ownerId Current user id.
-     * @return \Cake\ORM\Query\SelectQuery
+     * @return \Cake\ORM\Query\SelectQuery<\CsvIngest\Model\Entity\IngestPreset>
      */
     public function findVisible(SelectQuery $query, ?string $target = null, string|int|null $ownerId = null): SelectQuery
     {

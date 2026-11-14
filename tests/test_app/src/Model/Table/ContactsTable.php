@@ -9,7 +9,7 @@ use Cake\Validation\Validator;
 /**
  * Test import target. Mirrors a typical host table (BelongsTo + required field).
  *
- * @property \TestApp\Model\Table\CompaniesTable&\Cake\ORM\Association\BelongsTo $Companies
+ * @property \Cake\ORM\Association\BelongsTo<\TestApp\Model\Table\CompaniesTable> $Companies
  */
 class ContactsTable extends Table
 {
