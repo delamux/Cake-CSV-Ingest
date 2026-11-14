@@ -1,0 +1,380 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CsvIngest\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "(untitled)"
+msgstr "(sin título)"
+
+msgid "A new preset will be created."
+msgstr "Se creará un preset nuevo."
+
+msgid "A preset with this name already exists."
+msgstr "Ya existe un preset con este nombre."
+
+msgid "Accepted: .csv or .txt, up to {0} MB. Any common encoding; it is converted to UTF-8."
+msgstr "Se aceptan .csv o .txt de hasta {0} MB. Cualquier codificación habitual; se convierte a UTF-8."
+
+msgid "Actions"
+msgstr "Acciones"
+
+msgid "All fields"
+msgstr "Todos los campos"
+
+msgid "All tables"
+msgstr "Todas las tablas"
+
+msgid "Any status"
+msgstr "Cualquier estado"
+
+msgid "Assigned"
+msgstr "Asignados"
+
+msgid "CSV column"
+msgstr "Columna del CSV"
+
+msgid "CSV file"
+msgstr "Fichero CSV"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Choose a CSV file to upload."
+msgstr "Elige un fichero CSV para subir."
+
+msgid "Choose the existing record each CSV value refers to. Your choice is remembered for future imports."
+msgstr "Elige el registro existente al que se refiere cada valor del CSV. Tu elección se recordará en futuras importaciones."
+
+msgid "Choose which CSV column feeds each field. Fields marked * are required."
+msgstr "Elige qué columna del CSV alimenta cada campo. Los campos marcados con * son obligatorios."
+
+msgid "Column"
+msgstr "Columna"
+
+msgid "Column {0}"
+msgstr "Columna {0}"
+
+msgid "Columns"
+msgstr "Columnas"
+
+msgid "Comma (,)"
+msgstr "Coma (,)"
+
+msgid "Continue"
+msgstr "Continuar"
+
+msgid "Created"
+msgstr "Creados"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Delete the mapping for \"{0}\"?"
+msgstr "¿Eliminar la equivalencia de \"{0}\"?"
+
+msgid "Delete the preset \"{0}\"?"
+msgstr "¿Eliminar el preset \"{0}\"?"
+
+msgid "Double quote (\")"
+msgstr "Comilla doble (\")"
+
+msgid "Dry run"
+msgstr "Simulación"
+
+msgid "Dry run, nothing was saved."
+msgstr "Simulación: no se ha guardado nada."
+
+msgid "Dry run: validate everything but save nothing"
+msgstr "Simulación: validar todo sin guardar nada"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Every row creates a new record."
+msgstr "Cada fila crea un registro nuevo."
+
+msgid "Failed"
+msgstr "Con errores"
+
+msgid "Field"
+msgstr "Campo"
+
+msgid "Field separator"
+msgstr "Separador de campos"
+
+msgid "File format"
+msgstr "Formato del fichero"
+
+msgid "File preview (first {0} rows)"
+msgstr "Vista previa (primeras {0} filas)"
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "How CSV texts translate into related records for each importable table."
+msgstr "Cómo se traducen los textos del CSV a registros relacionados en cada tabla importable."
+
+msgid "Import"
+msgstr "Importar"
+
+msgid "Import presets"
+msgstr "Presets de importación"
+
+msgid "Import {0}"
+msgstr "Importar {0}"
+
+msgid "Imports into"
+msgstr "Importa en"
+
+msgid "Invalid upload reference."
+msgstr "Referencia de subida no válida."
+
+msgid "Line"
+msgstr "Línea"
+
+msgid "Map a CSV value"
+msgstr "Asignar un valor del CSV"
+
+msgid "Map columns and import"
+msgstr "Asignar columnas e importar"
+
+msgid "Map these required fields before importing: {0}"
+msgstr "Asigna estos campos obligatorios antes de importar: {0}"
+
+msgid "Mapped to"
+msgstr "Equivale a"
+
+msgid "Means"
+msgstr "Equivale a"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "No {0} matches \"{1}\". Assign it in the pending values list."
+msgstr "Ningún {0} coincide con \"{1}\". Asígnalo en la lista de valores pendientes."
+
+msgid "Only .csv and .txt files are accepted."
+msgstr "Solo se aceptan ficheros .csv y .txt."
+
+msgid "Options"
+msgstr "Opciones"
+
+msgid "Page {{page}} of {{pages}}, {{count}} records"
+msgstr "Página {{page}} de {{pages}}, {{count}} registros"
+
+msgid "Pagination"
+msgstr "Paginación"
+
+msgid "Patch: overwrite only non-blank values"
+msgstr "Completar: sobrescribir solo los valores no vacíos"
+
+msgid "Patched"
+msgstr "Completados"
+
+msgid "Pending"
+msgstr "Pendiente"
+
+msgid "Pending values ({0})"
+msgstr "Valores pendientes ({0})"
+
+msgid "Personal"
+msgstr "Personal"
+
+msgid "Pipe (|)"
+msgstr "Barra vertical (|)"
+
+msgid "Problem"
+msgstr "Problema"
+
+msgid "Replace: overwrite all mapped fields"
+msgstr "Reemplazar: sobrescribir todos los campos asignados"
+
+msgid "Replaced"
+msgstr "Reemplazados"
+
+msgid "Required"
+msgstr "Obligatorio"
+
+msgid "Reset"
+msgstr "Limpiar"
+
+msgid "Result"
+msgstr "Resultado"
+
+msgid "Sample"
+msgstr "Ejemplo"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Save this mapping as preset (optional)"
+msgstr "Guardar esta asignación como preset (opcional)"
+
+msgid "Saved preset"
+msgstr "Preset guardado"
+
+msgid "Semicolon (;)"
+msgstr "Punto y coma (;)"
+
+msgid "Shared"
+msgstr "Compartido"
+
+msgid "Show all"
+msgstr "Ver todos"
+
+msgid "Showing presets for {0}."
+msgstr "Mostrando presets de {0}."
+
+msgid "Single quote (')"
+msgstr "Comilla simple (')"
+
+msgid "Skip: keep the existing record"
+msgstr "Omitir: mantener el registro existente"
+
+msgid "Skipped"
+msgstr "Omitidos"
+
+msgid "Some pending values could not be saved."
+msgstr "No se han podido guardar algunos valores pendientes."
+
+msgid "Some values could not be linked to existing records. Assign them below and import again."
+msgstr "Algunos valores no se han podido vincular a registros existentes. Asígnalos abajo y vuelve a importar."
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Tab"
+msgstr "Tabulador"
+
+msgid "Table"
+msgstr "Tabla"
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Text quoted with"
+msgstr "Textos entrecomillados con"
+
+msgid "The database rejected this row."
+msgstr "La base de datos ha rechazado esta fila."
+
+msgid "The file could not be parsed: {0}"
+msgstr "No se ha podido leer el fichero: {0}"
+
+msgid "The file could not be uploaded. Please check the errors below."
+msgstr "No se ha podido subir el fichero. Revisa los errores indicados."
+
+msgid "The file encoding is not supported."
+msgstr "La codificación del fichero no está soportada."
+
+msgid "The file is empty."
+msgstr "El fichero está vacío."
+
+msgid "The file is larger than the {0} MB limit."
+msgstr "El fichero supera el límite de {0} MB."
+
+msgid "The file is larger than the {0} limit."
+msgstr "El fichero supera el límite de {0}."
+
+msgid "The first row contains column titles"
+msgstr "La primera fila contiene los títulos de las columnas"
+
+msgid "The preset could not be deleted."
+msgstr "No se ha podido eliminar el preset."
+
+msgid "The preset could not be saved."
+msgstr "No se ha podido guardar el preset."
+
+msgid "The preset has been deleted."
+msgstr "El preset se ha eliminado."
+
+msgid "The row limit was reached; the remaining rows were not processed."
+msgstr "Se alcanzó el límite de filas; el resto no se ha procesado."
+
+msgid "The same CSV column feeds several fields: {0}"
+msgstr "La misma columna del CSV alimenta varios campos: {0}"
+
+msgid "The uploaded file is no longer available."
+msgstr "El fichero subido ya no está disponible."
+
+msgid "The value map could not be deleted."
+msgstr "No se ha podido eliminar la equivalencia."
+
+msgid "The value map could not be saved."
+msgstr "No se ha podido guardar la equivalencia."
+
+msgid "The value map has been deleted."
+msgstr "La equivalencia se ha eliminado."
+
+msgid "The value map has been saved."
+msgstr "La equivalencia se ha guardado."
+
+msgid "This value is already mapped for this field."
+msgstr "Este valor ya tiene equivalencia para este campo."
+
+msgid "This value map does not belong to an importable relation."
+msgstr "Esta equivalencia no pertenece a una relación importable."
+
+msgid "Unknown delimiter."
+msgstr "Separador desconocido."
+
+msgid "Unknown enclosure."
+msgstr "Entrecomillado desconocido."
+
+msgid "Updated"
+msgstr "Actualizado"
+
+msgid "Upload a CSV file first."
+msgstr "Primero sube un fichero CSV."
+
+msgid "Upload another file"
+msgstr "Subir otro fichero"
+
+msgid "Upload file"
+msgstr "Subir fichero"
+
+msgid "Value in CSV"
+msgstr "Valor en el CSV"
+
+msgid "Value maps"
+msgstr "Equivalencias de valores"
+
+msgid "Visibility"
+msgstr "Visibilidad"
+
+msgid "When a row matches an existing record"
+msgstr "Cuando una fila coincide con un registro existente"
+
+msgid "You already have a preset with this name; it will be updated."
+msgstr "Ya tienes un preset con este nombre; se actualizará."
+
+msgid "match key"
+msgstr "clave de coincidencia"
+
+msgid "next"
+msgstr "siguiente"
+
+msgid "previous"
+msgstr "anterior"
+
+msgid "{0} rows failed"
+msgstr "{0} filas con errores"
+
+msgid "{0} rows processed: {1} created, {2} replaced, {3} patched, {4} skipped, {5} failed."
+msgstr "{0} filas procesadas: {1} creadas, {2} reemplazadas, {3} completadas, {4} omitidas, {5} con errores."
+
+msgid "— Decide later —"
+msgstr "— Decidir más tarde —"
+
+msgid "— Do not import —"
+msgstr "— No importar —"
+
+msgid "— No preset —"
+msgstr "— Sin preset —"
+
+msgid "— Pending —"
+msgstr "— Pendiente —"
