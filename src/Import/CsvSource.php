@@ -26,7 +26,7 @@ final class CsvSource
     private int $columnCount;
 
     /**
-     * @param \League\Csv\Reader $reader Configured reader.
+     * @param \League\Csv\Reader<array<array-key, mixed>> $reader Configured reader.
      * @param \CsvIngest\Import\CsvDialect $dialect Dialect used.
      */
     private function __construct(

@@ -75,7 +75,7 @@ enum Delimiter: string
     public static function sniff(string $sample): self
     {
         $firstLine = strtok(str_replace("\r\n", "\n", $sample), "\n");
-        if ($firstLine === false || $firstLine === '') {
+        if ($firstLine === false) {
             return self::Semicolon;
         }
         $unquoted = (string)preg_replace('/"[^"]*"/', '', $firstLine);

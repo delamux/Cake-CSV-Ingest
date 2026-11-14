@@ -1,0 +1,17 @@
+parameters:
+    level: 8
+    phpVersion: 80200
+    paths:
+        - src
+        # Analysed so CsvIngestActionsTrait has a consumer (TestApp ContactsController).
+        - tests/test_app/src
+    bootstrapFiles:
+        - tests/bootstrap.php
+    treatPhpDocTypesAsCertain: false
+    exceptions:
+        # CakePHP's DB layer throws PDOException/QueryException without declaring them
+        # (Table::save() only documents RolledbackTransactionException). Dead-catch analysis
+        # would flag real, tested handlers (see IngestRunnerTest::testDatabaseRejections...).
+        uncheckedExceptionClasses:
+            - PDOException
+        reportUncheckedExceptionDeadCatch: false

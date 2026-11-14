@@ -18,9 +18,10 @@ use function Cake\I18n\__d;
  * could not be resolved automatically and is waiting for a user decision.
  *
  * @method \CsvIngest\Model\Entity\IngestValueMap newEmptyEntity()
- * @method \CsvIngest\Model\Entity\IngestValueMap newEntity(array $data, array $options = [])
- * @method \CsvIngest\Model\Entity\IngestValueMap patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \CsvIngest\Model\Entity\IngestValueMap|false save(\Cake\Datasource\EntityInterface $entity, array $options = [])
+ * @method \CsvIngest\Model\Entity\IngestValueMap newEntity(array<string, mixed> $data, array<string, mixed> $options = [])
+ * @method \CsvIngest\Model\Entity\IngestValueMap get(mixed $primaryKey, array<string, mixed>|string $finder = 'all', \Psr\SimpleCache\CacheInterface|string|null $cache = null, \Closure|string|null $cacheKey = null, mixed ...$args)
+ * @method \CsvIngest\Model\Entity\IngestValueMap patchEntity(\Cake\Datasource\EntityInterface $entity, array<string, mixed> $data, array<string, mixed> $options = [])
+ * @method \CsvIngest\Model\Entity\IngestValueMap|false save(\Cake\Datasource\EntityInterface $entity, array<string, mixed> $options = [])
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class IngestValueMapsTable extends Table
@@ -80,9 +81,9 @@ class IngestValueMapsTable extends Table
     /**
      * Value maps still waiting for a decision.
      *
-     * @param \Cake\ORM\Query\SelectQuery $query Query.
+     * @param \Cake\ORM\Query\SelectQuery<\CsvIngest\Model\Entity\IngestValueMap> $query Query.
      * @param string|null $target Target table alias.
-     * @return \Cake\ORM\Query\SelectQuery
+     * @return \Cake\ORM\Query\SelectQuery<\CsvIngest\Model\Entity\IngestValueMap>
      */
     public function findPending(SelectQuery $query, ?string $target = null): SelectQuery
     {
@@ -100,12 +101,12 @@ class IngestValueMapsTable extends Table
     /**
      * Admin listing filter.
      *
-     * @param \Cake\ORM\Query\SelectQuery $query Query.
+     * @param \Cake\ORM\Query\SelectQuery<\CsvIngest\Model\Entity\IngestValueMap> $query Query.
      * @param string|null $target Target alias.
      * @param string|null $field Field name.
      * @param string|null $search Text contained in source or mapped value.
      * @param bool|null $pending Only pending (true) or only resolved (false).
-     * @return \Cake\ORM\Query\SelectQuery
+     * @return \Cake\ORM\Query\SelectQuery<\CsvIngest\Model\Entity\IngestValueMap>
      */
     public function findFiltered(
         SelectQuery $query,
@@ -221,11 +222,11 @@ class IngestValueMapsTable extends Table
             ])
             ->all();
         foreach ($entities as $entity) {
-            $entity = $this->patchEntity($entity, ['mapped_value' => (string)$assignments[$entity->id]], [
+            $entity = $this->patchEntity($entity, ['mapped_value' => (string)$assignments[$entity->get('id')]], [
                 'fields' => ['mapped_value'],
             ]);
             if (!$this->save($entity)) {
-                $errors[(int)$entity->id] = $entity->getErrors();
+                $errors[(int)$entity->get('id')] = $entity->getErrors();
             }
         }
 
