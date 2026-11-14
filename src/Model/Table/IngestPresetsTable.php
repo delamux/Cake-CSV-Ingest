@@ -93,21 +93,23 @@ class IngestPresetsTable extends Table
      * Presets a user may use for a target: shared ones plus their own.
      *
      * @param \Cake\ORM\Query\SelectQuery $query Query.
-     * @param string $target Target alias.
+     * @param string|null $target Target alias (null = all targets).
      * @param string|int|null $ownerId Current user id.
      * @return \Cake\ORM\Query\SelectQuery
      */
-    public function findVisible(SelectQuery $query, string $target, string|int|null $ownerId = null): SelectQuery
+    public function findVisible(SelectQuery $query, ?string $target = null, string|int|null $ownerId = null): SelectQuery
     {
         $owner = [$this->aliasField('owner_id') . ' IS' => null];
         if ($ownerId !== null) {
             $owner = ['OR' => [$owner, $this->aliasField('owner_id') => (string)$ownerId]];
         }
+        if ($target !== null && $target !== '') {
+            $query->where([$this->aliasField('target') => $target]);
+        }
 
         return $query
-            ->where([$this->aliasField('target') => $target])
             ->where($owner)
-            ->orderBy([$this->aliasField('name') => 'ASC']);
+            ->orderBy([$this->aliasField('target') => 'ASC', $this->aliasField('name') => 'ASC']);
     }
 
     /**

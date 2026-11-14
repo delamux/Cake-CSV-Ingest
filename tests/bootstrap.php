@@ -79,6 +79,9 @@ if (!getenv('DB_URL')) {
 ConnectionManager::setConfig('test', ['url' => getenv('DB_URL')]);
 ConnectionManager::alias('test', 'default');
 
+// Plugin controllers extend the host's App\Controller\AppController; the test host lives in TestApp.
+class_alias(TestApp\Controller\AppController::class, 'App\Controller\AppController');
+
 Configure::write('CsvIngest.storagePath', TMP . 'uploads');
 $plugin = new CsvIngestPlugin();
 Plugin::getCollection()->add($plugin);
