@@ -31,7 +31,9 @@ $headerOptions = [];
 foreach ($headers as $index => $title) {
     $headerOptions[$index] = sprintf('%d. %s', $index + 1, $title !== '' ? $title : __d('csv_ingest', '(untitled)'));
 }
+// The wizard usually runs on a prefixed host controller (e.g. Admin); the plugin's own screens have no prefix.
 $availabilityUrl = $this->Url->build([
+    'prefix' => false,
     'plugin' => 'CsvIngest',
     'controller' => 'Presets',
     'action' => 'availability',

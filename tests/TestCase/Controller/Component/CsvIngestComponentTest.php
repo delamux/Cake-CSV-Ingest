@@ -172,6 +172,17 @@ class CsvIngestComponentTest extends TestCase
         $this->assertResponseContains('data-ci-mapper');
     }
 
+    public function testWizardWorksOnAPrefixedHostController(): void
+    {
+        $this->storedUpload("Name;Email;Company\nBea;bea@example.test;Globex\n");
+
+        $this->get('/admin/contacts/csv-mapping');
+
+        $this->assertResponseOk();
+        $this->assertResponseContains('/csv-ingest/presets/availability.json?target=Contacts', 'plugin URLs drop the host prefix');
+        $this->assertResponseContains('href="/admin/contacts/csv-upload"', 'wizard links keep it');
+    }
+
     public function testPresetDrivesInitialMappingAndPolicy(): void
     {
         $this->storedUpload(presetId: 1);
