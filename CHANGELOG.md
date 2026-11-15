@@ -5,6 +5,11 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 
 ## [Unreleased] — 0.1.0
 
+### Added (run hooks)
+- `CsvIngest.beforeIngest` / `CsvIngest.afterIngest` events, once per run (`afterIngest` after a dry run
+  was rolled back, with the report), and the save options `csvIngest` / `dryRun` on every row save, so
+  hosts can defer side effects such as file or cache rebuilds to the end of a real run.
+
 ### Fixed
 - A row whose match key finds more than one existing record now fails with an "ambiguous match"
   message under the match column, whatever the match policy, instead of updating the first record found.
