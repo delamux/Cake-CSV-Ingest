@@ -5,6 +5,10 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
 
 ## [Unreleased] — 0.1.0
 
+### Fixed
+- A row whose match key finds more than one existing record now fails with an "ambiguous match"
+  message under the match column, whatever the match policy, instead of updating the first record found.
+
 ### Added
 - `Ingestable` behavior: importable `fields` (array or closure), `labels`, composite `matchOn`,
   `validation` set, `lookupFields`, overridable `ingestMatch` finder.

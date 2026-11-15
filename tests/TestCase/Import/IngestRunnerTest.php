@@ -137,6 +137,29 @@ class IngestRunnerTest extends TestCase
         $this->assertSame('', $ana['notes']);
     }
 
+    public function testAmbiguousMatchFailsTheRowAndChangesNoRecord(): void
+    {
+        $twin = $this->contacts->newEntity(['name' => 'Ana Twin', 'email' => 'ana@example.test']);
+        $this->contacts->saveOrFail($twin);
+        $csv = self::HEADER . "Ana Changed;ana@example.test;Acme;99;;;;changed\n"
+            . "Bea;bea@example.test;Globex;;;;;\n";
+
+        foreach ([OnMatch::Replace, OnMatch::Patch, OnMatch::Skip] as $onMatch) {
+            $report = $this->runner()->run($this->source($csv), $this->fullMap(), $onMatch);
+
+            $this->assertCount(1, $report->failures(), $onMatch->name);
+            $failure = $report->failures()[0];
+            $this->assertSame(2, $failure->line);
+            $this->assertArrayHasKey('Correo', $failure->messages, 'reported under the match column');
+            $this->assertStringContainsString('More than one', $failure->messages['Correo'][0]);
+            $names = $this->contacts->find()->where(['email' => 'ana@example.test'])
+                ->all()->extract('name')->toList();
+            sort($names);
+            $this->assertSame(['Ana', 'Ana Twin'], $names, 'neither twin changed');
+        }
+        $this->assertSame('Bea', $this->contact('bea@example.test')['name'], 'other rows still import');
+    }
+
     public function testPatchKeepsExistingValuesForBlanksButAppliesZeroAndFalse(): void
     {
         $csv = self::HEADER . "Ana B;ana@example.test;;0;0;no;;\n";

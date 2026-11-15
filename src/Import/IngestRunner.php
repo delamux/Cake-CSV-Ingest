@@ -182,6 +182,11 @@ final class IngestRunner
         $data = $mutable->getArrayCopy();
 
         [$entity, $outcome] = $this->prepareEntity($data, $onMatch);
+        if ($outcome === null) {
+            $report->fail(new RowFailure($line, $this->ambiguityMessages($titles, $fields)));
+
+            return;
+        }
         if ($entity === null) {
             $report->record(RowOutcome::Skipped);
 
@@ -207,13 +212,18 @@ final class IngestRunner
     /**
      * @param array<string, mixed> $data Row data.
      * @param \CsvIngest\Import\OnMatch $onMatch Policy.
-     * @return array{0: \Cake\Datasource\EntityInterface|null, 1: \CsvIngest\Import\RowOutcome}
+     * @return array{0: \Cake\Datasource\EntityInterface|null, 1: \CsvIngest\Import\RowOutcome|null}
+     *   Outcome null: the row matches more than one existing record (nothing is changed).
      */
     private function prepareEntity(array $data, OnMatch $onMatch): array
     {
         $existing = null;
         if ($this->behavior->matchFields() !== []) {
-            $existing = $this->target->find('ingestMatch', values: $data)->first();
+            $matches = $this->target->find('ingestMatch', values: $data)->limit(2)->all()->toList();
+            if (count($matches) > 1) {
+                return [null, null];
+            }
+            $existing = $matches[0] ?? null;
         }
 
         if (!$existing instanceof EntityInterface) {
@@ -287,6 +297,25 @@ final class IngestRunner
             foreach ($flat as $message) {
                 $messages[$key][] = (string)$message;
             }
+        }
+
+        return $messages;
+    }
+
+    /**
+     * Failure messages for a row whose match key finds several records, under each match column.
+     *
+     * @param array<string, string> $titles Field => column title.
+     * @param array<string, \CsvIngest\Import\FieldSpec> $fields Specs.
+     * @return array<string, list<string>>
+     */
+    private function ambiguityMessages(array $titles, array $fields): array
+    {
+        $message = __d('csv_ingest', 'More than one existing record matches this row; none of them was changed.');
+        $messages = [];
+        foreach ($this->behavior->matchFields() as $field) {
+            $key = $titles[$field] ?? (isset($fields[$field]) ? $fields[$field]->label : $field);
+            $messages[$key][] = $message;
         }
 
         return $messages;
