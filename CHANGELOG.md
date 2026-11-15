@@ -11,6 +11,8 @@ Format: [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versioning: [S
   hosts can defer side effects such as file or cache rebuilds to the end of a real run.
 
 ### Fixed
+- The mapping screen failed with a missing route when the wizard ran on a prefixed host controller
+  (e.g. `Admin/Contacts`): the link to the plugin's preset check now drops the host prefix.
 - A row whose match key finds more than one existing record now fails with an "ambiguous match"
   message under the match column, whatever the match policy, instead of updating the first record found.
 - Foreign-key text that matches more than one related record is no longer resolved to the first one:

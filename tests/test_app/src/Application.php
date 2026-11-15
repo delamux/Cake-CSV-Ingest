@@ -47,5 +47,8 @@ class Application extends BaseApplication
         $routes->scope('/', function (RouteBuilder $builder): void {
             $builder->fallbacks();
         });
+        $routes->prefix('Admin', function (RouteBuilder $builder): void {
+            $builder->fallbacks();
+        });
     }
 }
