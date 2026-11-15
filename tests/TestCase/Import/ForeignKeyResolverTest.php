@@ -76,6 +76,23 @@ class ForeignKeyResolverTest extends TestCase
         $this->assertSame(0, $this->fetchTable('CsvIngest.IngestValueMaps')->find()->where(['source_value' => 'Initech'])->count());
     }
 
+    public function testTextMatchingSeveralRecordsIsUnresolvedUntilAValueMapPicksOne(): void
+    {
+        $companies = $this->fetchTable('Companies');
+        $companies->saveOrFail($companies->newEntity(['name' => 'Globex', 'tax_code' => 'B999']));
+        $field = $this->companyField();
+
+        $resolver = $this->resolver();
+        $this->assertNull($resolver->resolve($field, 'Globex'), 'ambiguous text never picks a record');
+        $this->assertSame(['company_id' => ['Globex']], $resolver->unresolved());
+
+        $maps = $this->fetchTable('CsvIngest.IngestValueMaps');
+        $maps->saveOrFail($maps->newEntity([
+            'target' => 'Contacts', 'field' => 'company_id', 'source_value' => 'Globex', 'mapped_value' => '2',
+        ]));
+        $this->assertSame('2', $this->resolver()->resolve($field, 'Globex'), 'an explicit map disambiguates');
+    }
+
     public function testWorksWithoutValueMapsTable(): void
     {
         $resolver = $this->resolver(withValueMaps: false);
