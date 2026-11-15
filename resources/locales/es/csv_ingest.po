@@ -151,6 +151,9 @@ msgstr "Equivale a"
 msgid "Means"
 msgstr "Equivale a"
 
+msgid "More than one existing record matches this row; none of them was changed."
+msgstr "Más de un registro existente coincide con esta fila; no se ha cambiado ninguno."
+
 msgid "Name"
 msgstr "Nombre"
 

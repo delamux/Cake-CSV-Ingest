@@ -150,6 +150,9 @@ msgstr ""
 msgid "Means"
 msgstr ""
 
+msgid "More than one existing record matches this row; none of them was changed."
+msgstr ""
+
 msgid "Name"
 msgstr ""
 
