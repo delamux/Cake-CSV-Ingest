@@ -101,6 +101,9 @@ final class ForeignKeyResolver
     }
 
     /**
+     * Text that matches several records is ambiguous: it resolves to nothing, so it ends up in the
+     * pending list where an explicit value map picks the right record.
+     *
      * @param \Cake\ORM\Association $association BelongsTo association.
      * @param string $text Trimmed CSV text.
      * @return string|int|null
@@ -112,12 +115,18 @@ final class ForeignKeyResolver
         }
         $table = $association->getTarget();
         $primaryKey = $this->primaryKey($table);
-        $row = $table->find()
+        $rows = $table->find()
             ->select([$primaryKey => $table->aliasField($primaryKey)])
             ->where([$table->aliasField($this->lookupField($association)) => $text])
             ->disableHydration()
-            ->first();
+            ->limit(2)
+            ->all()
+            ->toList();
+        if (count($rows) !== 1) {
+            return null;
+        }
 
+        $row = $rows[0];
         $key = is_array($row) ? ($row[$primaryKey] ?? null) : null;
 
         return is_int($key) || is_string($key) ? $key : null;
