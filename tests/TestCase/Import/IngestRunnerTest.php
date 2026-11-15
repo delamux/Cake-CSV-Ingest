@@ -18,6 +18,7 @@ use CsvIngest\Import\OnMatch;
 use CsvIngest\Import\RowOutcome;
 use CsvIngest\Import\ValueCaster;
 use CsvIngest\Model\Table\IngestValueMapsTable;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 class IngestRunnerTest extends TestCase
 {
@@ -274,6 +275,44 @@ class IngestRunnerTest extends TestCase
         $this->runner()->run($this->source(self::HEADER . "bea;bea@example.test;;;;;;Almacen 1\n"), $this->fullMap());
 
         $this->assertSame([['BEA', 'Almacen 1', RowOutcome::Created, 2]], $seen);
+    }
+
+    /**
+     * @return array<string, array{bool}>
+     */
+    public static function dryRunProvider(): array
+    {
+        return ['real run' => [false], 'dry run' => [true]];
+    }
+
+    #[DataProvider('dryRunProvider')]
+    public function testSavesAreFlaggedAndRunLevelEventsWrapTheRun(bool $dryRun): void
+    {
+        $log = [];
+        $manager = $this->contacts->getEventManager();
+        $manager->on(IngestEvents::BEFORE_INGEST, function (EventInterface $event) use (&$log): void {
+            $log[] = ['before', $event->getData('dryRun')];
+        });
+        $manager->on('Model.beforeSave', function (EventInterface $event, $entity, ArrayObject $options) use (&$log): void {
+            $log[] = ['save', $options['csvIngest'] ?? null, $options['dryRun'] ?? null];
+        });
+        $manager->on(IngestEvents::AFTER_INGEST, function (EventInterface $event) use (&$log): void {
+            $log[] = [
+                'after',
+                $event->getData('dryRun'),
+                $event->getData('report')->count(RowOutcome::Created),
+                $this->contacts->find()->where(['email' => 'bea@example.test'])->count(),
+            ];
+        });
+        $csv = self::HEADER . "Bea;bea@example.test;;;;;;\nCid;cid@example.test;Initech;;;;;\n";
+
+        $this->runner()->run($this->source($csv), $this->fullMap(), dryRun: $dryRun);
+
+        $this->assertSame([
+            ['before', $dryRun],
+            ['save', true, $dryRun],
+            ['after', $dryRun, 1, $dryRun ? 0 : 1],
+        ], $log, 'afterIngest runs once, after a dry run has been rolled back');
     }
 
     public function testBeforeMarshalListenerCanSkipARow(): void

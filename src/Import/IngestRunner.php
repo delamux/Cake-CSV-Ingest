@@ -31,6 +31,11 @@ final class IngestRunner
     private ValueCaster $caster;
 
     /**
+     * Whether the current run is a dry run (passed to every save as the `dryRun` option).
+     */
+    private bool $dryRun = false;
+
+    /**
      * @param \Cake\ORM\Table $target Table with the Ingestable behavior.
      * @param \CsvIngest\Model\Table\IngestValueMapsTable|null $valueMaps Value maps (null disables them).
      * @param \CsvIngest\Import\ValueCaster|null $caster Caster (defaults from settings).
@@ -80,6 +85,9 @@ final class IngestRunner
             throw new IncompleteMappingException($missing);
         }
 
+        $this->dryRun = $dryRun;
+        $this->target->dispatchEvent(IngestEvents::BEFORE_INGEST, ['dryRun' => $dryRun]);
+
         $resolver = new ForeignKeyResolver($this->target, $this->valueMaps);
         $report = new IngestReport($dryRun);
         $connection = $this->target->getConnection();
@@ -108,6 +116,7 @@ final class IngestRunner
 
         $report->noteUnresolved($resolver->unresolved());
         $this->registerPending($resolver->unresolved());
+        $this->target->dispatchEvent(IngestEvents::AFTER_INGEST, ['report' => $report, 'dryRun' => $dryRun]);
 
         return $report;
     }
@@ -269,7 +278,11 @@ final class IngestRunner
             return false;
         }
         try {
-            return $this->target->save($entity, ['atomic' => true]) !== false;
+            return $this->target->save($entity, [
+                'atomic' => true,
+                'csvIngest' => true,
+                'dryRun' => $this->dryRun,
+            ]) !== false;
         } catch (PDOException | RolledbackTransactionException $e) {
             Log::warning(sprintf(
                 'CsvIngest: row could not be saved in %s: %s',

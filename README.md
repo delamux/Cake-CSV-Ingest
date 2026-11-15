@@ -105,7 +105,19 @@ $this->getEventManager()->on(IngestEvents::AFTER_ROW_PERSIST, function ($event) 
     $units = (int)$event->getData('sourceRow')['Units'];
     // ...create child records, etc.
 });
+
+// Once per run, around all rows. afterIngest fires after a dry run was rolled back.
+$this->getEventManager()->on(IngestEvents::AFTER_INGEST, function ($event) {
+    if (!$event->getData('dryRun')) {
+        $this->rebuildSearchIndex(); // one-off side effect instead of one per row
+    }
+});
 ```
+
+Every save of a run gets the options `csvIngest => true` and `dryRun => bool`, so `beforeSave` /
+`afterSave` can skip work that `afterIngest` then does once (`IngestEvents::BEFORE_INGEST` is also
+available). Side effects outside the database (files, caches, mail) are **not** rolled back by a dry
+run: guard them with `$options['dryRun']` or move them to `afterIngest`.
 
 ## Configuration
 
